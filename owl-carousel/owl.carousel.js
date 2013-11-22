@@ -229,6 +229,10 @@ if ( typeof Object.create !== "function" ) {
 			if(typeof(base.options.itemsCustom) !== 'undefined' && base.options.itemsCustom !== false){
 				//Reorder array by screen size
 				base.options.itemsCustom.sort(function(a,b){return a[0]-b[0];});
+				//Prepopulate the first value, if the first entry doesn't have 0 as first node
+				if(base.options.itemsCustom.length > 0 && base.options.itemsCustom[0][0] !== 0){
+					base.options.itemsCustom.unshift([0, base.options.itemsCustom[0][1]]);
+				}
 				for(var i in base.options.itemsCustom){
 					if(typeof(base.options.itemsCustom[i]) !== 'undefined' && base.options.itemsCustom[i][0] <= width){
 						base.options.items = base.options.itemsCustom[i][1];
